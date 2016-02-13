@@ -1,5 +1,7 @@
 <?php
 
+namespace OCFram;
+
 /**
  * Classe représentant la requête du client
  * TP Créer un site web - POO en PHP
@@ -9,8 +11,6 @@
  * @version     1.0.0
  * @copyright   OpenClassrooms - Victor Thuillier
  */
-namespace OCFram;
-
 class HTTPRequest {
     public function cookieData($key) {
         return isset($_COOKIE[$key]) ? $_COOKIE[$key] : null;
