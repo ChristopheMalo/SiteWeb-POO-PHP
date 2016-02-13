@@ -11,7 +11,7 @@ namespace OCFram;
  * @version     1.0.0
  * @copyright   OpenClassrooms - Victor Thuillier
  */
-class HTTPRequest {
+class HTTPRequest extends ApplicationComponent {
     public function cookieData($key) {
         return isset($_COOKIE[$key]) ? $_COOKIE[$key] : null;
     }

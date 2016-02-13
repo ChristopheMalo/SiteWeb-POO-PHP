@@ -11,7 +11,7 @@ namespace OCFram;
  * @version     1.0.0
  * @copyright   OpenClassrooms - Victor Thuillier
  */
-class HTTPResponse {
+class HTTPResponse extends ApplicationComponent {
     protected $page;
     
     public function addHeader($header) {

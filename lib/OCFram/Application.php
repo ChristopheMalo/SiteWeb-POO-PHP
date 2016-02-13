@@ -17,8 +17,8 @@ abstract class Application {
               $name;
     
     public function __construct() {
-        $this->httpRequest  = new HTTPRequest;
-        $this->httpResponse = new HTTPResponse;
+        $this->httpRequest  = new HTTPRequest($this);
+        $this->httpResponse = new HTTPResponse($this);
         $this->name         = '';
     }
     
