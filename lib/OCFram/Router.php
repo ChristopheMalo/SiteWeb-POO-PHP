@@ -3,7 +3,8 @@
 namespace OCFram;
 
 /**
- * Classe permettant de savoir quelle page doit être exécutée 
+ * Classe permettant de savoir quelle page doit être exécutée
+ * Donne à l'application le contrôleur associé 
  * TP Créer un site web - POO en PHP
  * 
  * @author      Christophe Malo
