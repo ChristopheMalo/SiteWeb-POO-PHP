@@ -23,11 +23,21 @@ class HTTPResponse extends ApplicationComponent {
     }
     
     public function redirect404() {
+        // Créer une instance de la page
+        $this->page = new Page($this->app);
         
+        // Assigner à la page le fichier vue à générer
+        $this->page->setContentFile(__DIR__ . '/../../Errors/404.html');
+        
+        // Ajouter le header
+        $this->addHeader('HTTP/1.O 404 Not Found');
+        
+        // Envoyer la réponse
+        $this->send();
     }
     
     public function send() {
-        exit($this->page->getGeneratePage());
+        exit($this->page->getGeneratedPage());
     }
     
     // Par sécurité, par rapport à la fonction PHP setcookie(),
