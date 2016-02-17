@@ -8,6 +8,7 @@ namespace OCFram;
  * 
  * @author      Christophe Malo
  * @date        13/02/2016
+ * @updated     17/02/2016
  * @version     1.0.0
  * @copyright   OpenClassrooms - Victor Thuillier
  */
@@ -15,12 +16,14 @@ abstract class Application {
     protected $httpRequest,
               $httpResponse,
               $user,
+              $config,
               $name;
     
     public function __construct() {
         $this->httpRequest  = new HTTPRequest($this);
         $this->httpResponse = new HTTPResponse($this);
         $this->user         = new User($this);
+        $this->config       = new Config($this);
         $this->name         = '';
     }
     
@@ -77,6 +80,10 @@ abstract class Application {
         return $this->user;
     }
     
+    public function config() {
+        return $this->config;
+    }
+
     public function name() {
         return $this->name;
     }
