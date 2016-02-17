@@ -14,11 +14,13 @@ namespace OCFram;
 abstract class Application {
     protected $httpRequest,
               $httpResponse,
+              $user,
               $name;
     
     public function __construct() {
         $this->httpRequest  = new HTTPRequest($this);
         $this->httpResponse = new HTTPResponse($this);
+        $this->user         = new User($this);
         $this->name         = '';
     }
     
@@ -69,6 +71,10 @@ abstract class Application {
     
     public function httpResponse() {
         return $this->httpResponse;
+    }
+    
+    public function user() {
+        return $this->user;
     }
     
     public function name() {
