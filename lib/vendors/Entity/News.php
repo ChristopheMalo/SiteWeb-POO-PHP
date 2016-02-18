@@ -6,7 +6,7 @@ use \OCFram\Entity;
 
 /**
  * Classe représentant une news
- * TP Créer un système de news - POO en PHP
+ * TP Créer un site web - POO en PHP
  *
  * @author      Christophe Malo
  * @date        18/02/2016
