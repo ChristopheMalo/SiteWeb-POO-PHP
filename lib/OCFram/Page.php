@@ -43,7 +43,7 @@ class Page extends ApplicationComponent {
         return ob_get_clean();
     }
     
-    public function setContentFile() {
+    public function setContentFile($contentFile) {
         if (!is_string($contentFile) || empty($contentFile)) {
             throw new \InvalidArgumentException('La vue spécifiée est invalide');
         }

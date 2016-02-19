@@ -42,23 +42,23 @@ class News extends Entity {
     /**
      * Méthodes Accesseurs (Getters) - Pour récupérer / lire la valeur d'un attribut
      */
-    public function getAuteur() {
+    public function auteur() {
         return $this->auteur;
     }
 
-    public function getTitre() {
+    public function titre() {
         return $this->titre;
     }
 
-    public function getContenu() {
+    public function contenu() {
         return $this->contenu;
     }
 
-    public function getDateAjout() {
+    public function dateAjout() {
         return $this->dateAjout;
     }
 
-    public function getDateModif() {
+    public function dateModif() {
         return $this->dateModif;
     }
 
