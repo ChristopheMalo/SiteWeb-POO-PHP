@@ -24,4 +24,11 @@ abstract class NewsManager extends Manager {
      * @return array La liste des news. Chaque entrée est une instance de News.
      */
     abstract public function getList($debut = -1, $limite = -1);
+    
+    /**
+     * Méthode retournant une news spécifique
+     * @param   $id int L'identifiant unique de la news à afficher
+     * @return  News    La news demandée 
+     */
+    abstract public function getUnique($id);
 }
