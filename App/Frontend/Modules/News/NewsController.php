@@ -44,4 +44,22 @@ class NewsController extends BackController {
         // Ajouter la variable $listeNews à la vue.
         $this->page->addVar('listeNews', $listeNews);
     }
+    
+    /**
+     * Méthode pour l'action show
+     * Affiche une news
+     * Si la news n'existe pas, redirection vers une erreur 404
+     * 
+     * @param HTTPRequest $request
+     */
+    public function executeShow(HTTPRequest $request) {
+        $news = $this->managers->getManagerOf('News')->getUnique($request->getData('id'));
+        
+        if (empty($news)) {
+            $this->app->httResponse()->redirect404();
+        }
+        
+        $this->page->addVar('title', $news->titre());
+        $this->page->addVar('news', $news);
+    }
 }
