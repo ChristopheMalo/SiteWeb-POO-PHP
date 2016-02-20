@@ -5,7 +5,7 @@ namespace Entity;
 use \OCFram\Entity;
 
 /**
- * Classe représentant une news
+ * Classe représentant l'enregistrement d'une news
  * TP Créer un site web - POO en PHP
  *
  * @author      Christophe Malo
