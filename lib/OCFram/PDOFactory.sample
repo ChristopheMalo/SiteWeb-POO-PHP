@@ -1,0 +1,27 @@
+<?php
+
+namespace OCFram;
+
+/**
+ * Connexion à la DB
+ *
+ * Renommer le fichier en PDOFactory.php
+ * Remplacer dbname, login et password
+ *
+ * TP Créer un site web - POO en PHP
+ * 
+ * @author      Christophe Malo
+ * @date        14/02/2016
+ * @version     1.0.0
+ * @copyright   OpenClassrooms - Victor Thuillier
+ */
+class PDOFactory {
+
+    public static function getMysqlConnexion() {
+        $db = new \PDO('mysql:host=localhost;dbname=nom_de_la_db', 'login_utilisateur_db', 'password_utilisateur_db');
+        $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
+        return $db;
+    }
+
+}

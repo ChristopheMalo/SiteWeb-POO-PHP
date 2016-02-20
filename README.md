@@ -9,6 +9,7 @@ Concevoir et coder l'application (Framework / Librairie), le frontend et le back
 - Création de la branche 'develop'
 - Développement de la bibliothèque (library) de l'application
 - Concevoir et coder les classes de la bibliothèque
+- Développement de l'application Frontend (Le module de news avec commentaires)
 
 ## Copyright
 **Inspiré par :** [un cours Openclassrooms - de Victor Thuillier](https://openclassrooms.com/courses/programmez-en-oriente-objet-en-php/description-de-l-application) - **Adaptation :** Christophe Malo
