@@ -21,15 +21,15 @@ use \Entity\Comment;
 abstract class CommentsManager extends Manager {
     /**
      * Méthode permettant d'ajouter un commentaire
-     * @param $comment Le commentaire à ajouter
-     * @return void
+     * @param   $comment Le commentaire à ajouter
+     * @return  void
      */
     abstract protected function add(Comment $comment);
 
     /**
      * Méthode permettant d'enregistrer un commentaire.
-     * @param $comment Le commentaire à enregistrer
-     * @return void
+     * @param   $comment Le commentaire à enregistrer
+     * @return  void
      */
     public function save(Comment $comment) {
         if ($comment->isValid()) {
@@ -38,5 +38,13 @@ abstract class CommentsManager extends Manager {
             throw new \RuntimeException('Le commentaire doit être validé pour être enregistré');
         }
     }
+    
+    /**
+     * Méthode permettant de récupérer une liste de commentaires
+     * 
+     * @param   $news Le news ciblée pour la récupération des commentaire
+     * @return  array La liste des commentaires
+     */
+    abstract public function getListOf($news);
 
 }
