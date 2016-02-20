@@ -22,7 +22,7 @@ class User {
      * @return mixed $attr
      */
     public function getAttribute($attr) {
-        return $this->$attr;
+        return isset($_SESSION[$attr]) ? $_SESSION[$attr] : null;
     }
     
     /**

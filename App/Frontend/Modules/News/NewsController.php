@@ -4,6 +4,7 @@ namespace App\Frontend\Modules\News;
 
 use \OCFram\BackController;
 use \OCFram\HTTPRequest;
+use \Entity\Comment;
 
 /**
  * Controleur du module News

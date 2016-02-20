@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions>
-    <define var="nombre_news" value="5" />
-    <define var="nombre_caracteres" value="200" />
+    <define var="nombre_news" value="5"></define>
+    <define var="nombre_caracteres" value="200"></define>
 </definitions>
