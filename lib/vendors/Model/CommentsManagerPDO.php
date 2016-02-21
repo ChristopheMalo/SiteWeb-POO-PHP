@@ -14,8 +14,11 @@ use \Entity\Comment;
  * @version     1.0.0
  * @copyright   OpenClassrooms - Victor Thuillier
  */
-class CommentsManagerPDO extends CommentsManager {
-    protected function add(Comment $comment) {
+class CommentsManagerPDO extends CommentsManager
+{
+
+    protected function add(Comment $comment)
+    {
         $q = $this->dao->prepare('INSERT INTO comments SET news = :news, auteur = :auteur, contenu = :contenu, date = NOW()');
 
         $q->bindValue(':news', $comment->news(), \PDO::PARAM_INT);
@@ -27,8 +30,10 @@ class CommentsManagerPDO extends CommentsManager {
         $comment->setId($this->dao->lastInsertId());
     }
     
-    public function getListOf($news) {
-        if (!ctype_digit($news)) {
+    public function getListOf($news)
+    {
+        if (!ctype_digit($news))
+        {
             throw new \InvalidArgumentException('L\'identifiant de la news passé doit être un nombre entier valide');
         }
 
@@ -40,7 +45,8 @@ class CommentsManagerPDO extends CommentsManager {
 
         $comments = $q->fetchAll();
 
-        foreach ($comments as $comment) {
+        foreach ($comments as $comment)
+        {
             $comment->setDate(new \DateTime($comment->date()));
         }
 
