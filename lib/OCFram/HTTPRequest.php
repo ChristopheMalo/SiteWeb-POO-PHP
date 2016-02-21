@@ -5,6 +5,8 @@ namespace OCFram;
 /**
  * Classe représentant la requête du client
  * 
+ * HTTPRequest est un composant de l'application, il hérite de ApplicationComponent
+ * 
  * TP Créer un site web - POO en PHP
  * 
  * @author      Christophe Malo
@@ -14,6 +16,7 @@ namespace OCFram;
  */
 class HTTPRequest extends ApplicationComponent
 {
+    
     /**
      * Obtenir un cookie
      * 

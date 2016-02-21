@@ -5,6 +5,8 @@ namespace OCFram;
 /**
  * Classe représentant la réponse envoyée au client
  * 
+ * HTTPReponse est un composant de l'application, il hérite de ApplicationComponent
+ * 
  * TP Créer un site web - POO en PHP
  * 
  * @author      Christophe Malo

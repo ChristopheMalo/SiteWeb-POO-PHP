@@ -8,6 +8,8 @@ namespace OCFram;
  * Autre caractéristique : page associée au contrôleur
  * Attention, par défaut, la vue à la même valeur que l'action dans le constructeur
  * 
+ * Le BackCOntroller est un composant de l'application, il hérite d'ApplicationComponent
+ * 
  * TP Créer un site web - POO en PHP
  * 
  * @author      Christophe Malo

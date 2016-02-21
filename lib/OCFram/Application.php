@@ -25,6 +25,7 @@ abstract class Application
     
     /**
      * Le constructeur de l'application instancie les classes
+     * en créant les objets HTTPRequest, HTTPReponse, User et Config
      * 
      * @return void
      */
@@ -34,6 +35,7 @@ abstract class Application
         $this->httpResponse = new HTTPResponse($this);
         $this->user         = new User($this);
         $this->config       = new Config($this);
+        
         $this->name         = '';
     }
     
@@ -119,7 +121,7 @@ abstract class Application
     }
     
     /**
-     * 
+     * Retourne l'utilisateur
      * 
      * @return User 
      */
@@ -129,7 +131,7 @@ abstract class Application
     }
     
     /**
-     * 
+     * Retourne la configuration
      * 
      * @return Config
      */

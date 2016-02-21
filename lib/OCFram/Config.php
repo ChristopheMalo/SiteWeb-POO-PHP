@@ -7,6 +7,8 @@ namespace OCFram;
  * Chaque application possède un fichier 
  * de configuration déclarant ces propres paramètres
  * 
+ * Config est un composant de l'application, il hérite de ApplicationComponent
+ * 
  * @author      Christophe Malo
  * @date        17/02/2016
  * @version     1.0.0
