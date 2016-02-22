@@ -5,7 +5,8 @@ namespace OCFram;
 /**
  * Classe représentant le composant de application
  * Cette classe se chargera juste de stocker,
- * pendant la construction de l'objet, l'instance de l'application exécutée. 
+ * pendant la construction de l'objet, l'instance de l'application exécutée.
+ *  
  * TP Créer un site web - POO en PHP
  * 
  * @author      Christophe Malo
@@ -13,14 +14,30 @@ namespace OCFram;
  * @version     1.0.0
  * @copyright   OpenClassrooms - Victor Thuillier
  */
-abstract class ApplicationComponent {
+abstract class ApplicationComponent
+{
+    
     protected $app;
     
-    public function __construct(Application $app) {
+    /**
+     * Le constructeur
+     * 
+     * @param \OCFram\Application $app
+     * @return void
+     */
+    public function __construct(Application $app)
+    {
         $this->app = $app;
     }
     
-    public function app() {
+    /**
+     * 
+     * 
+     * @return Application
+     */
+    public function app()
+    {
         return $this->app;
     }
+    
 }

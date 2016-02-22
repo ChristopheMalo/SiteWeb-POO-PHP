@@ -4,6 +4,8 @@ namespace OCFram;
 
 /**
  * Classe représentant l'Application
+ * Chaque classe représentant une application héritera de cette classe
+ * 
  * TP Créer un site web - POO en PHP
  * 
  * @author      Christophe Malo
@@ -12,22 +14,40 @@ namespace OCFram;
  * @version     1.0.0
  * @copyright   OpenClassrooms - Victor Thuillier
  */
-abstract class Application {
+abstract class Application
+{
+    
     protected $httpRequest,
               $httpResponse,
               $user,
               $config,
               $name;
     
-    public function __construct() {
+    /**
+     * Le constructeur de l'application instancie les classes
+     * en créant les objets HTTPRequest, HTTPReponse, User et Config
+     * 
+     * @return void
+     */
+    public function __construct()
+    {
         $this->httpRequest  = new HTTPRequest($this);
         $this->httpResponse = new HTTPResponse($this);
         $this->user         = new User($this);
         $this->config       = new Config($this);
+        
         $this->name         = '';
     }
     
-    public function getController() {
+    /* Accesseurs - GEtters */
+    
+    /**
+     * 
+     * 
+     * @return \OCFram\controllerClass
+     */
+    public function getController()
+    {
         $router = new Router;
 
         $xml = new \DOMDocument;
@@ -36,11 +56,13 @@ abstract class Application {
         $routes = $xml->getElementsByTagName('route');
 
         // On parcourt les routes du fichier XML.
-        foreach ($routes as $route) {
+        foreach ($routes as $route)
+        {
             $vars = [];
 
             // On regarde si des variables sont présentes dans l'URL.
-            if ($route->hasAttribute('vars')) {
+            if ($route->hasAttribute('vars'))
+            {
                 $vars = explode(',', $route->getAttribute('vars'));
             }
 
@@ -48,11 +70,16 @@ abstract class Application {
             $router->addRoute(new Route($route->getAttribute('url'), $route->getAttribute('module'), $route->getAttribute('action'), $vars));
         }
 
-        try {
+        try 
+        {
             // On récupère la route correspondante à l'URL.
             $matchedRoute = $router->getRoute($this->httpRequest->requestURI());
-        } catch (\RuntimeException $e) {
-            if ($e->getCode() == Router::NO_ROUTE) {
+        }
+        
+        catch (\RuntimeException $e) 
+        {
+            if ($e->getCode() == Router::NO_ROUTE) 
+            {
                 // Si aucune route ne correspond, c'est que la page demandée n'existe pas.
                 $this->httpResponse->redirect404();
             }
@@ -65,26 +92,62 @@ abstract class Application {
         $controllerClass = 'App\\' . $this->name . '\\Modules\\' . $matchedRoute->module() . '\\' . $matchedRoute->module() . 'Controller';
         return new $controllerClass($this, $matchedRoute->module(), $matchedRoute->action());
     }
-
+    
+    /**
+     * Fonction permettant d'exécuter l'application
+     * 
+     * @return void
+     */
     abstract public function run();
     
-    public function httpRequest() {
+    /**
+     * La requête du client
+     * 
+     * @return HTTPRequest
+     */
+    public function httpRequest()
+    {
         return $this->httpRequest;
     }
     
-    public function httpResponse() {
+    /**
+     * La réponse renvoyée au client
+     * 
+     * @return HTTPResponse
+     */
+    public function httpResponse()
+    {
         return $this->httpResponse;
     }
     
-    public function user() {
+    /**
+     * Retourne l'utilisateur
+     * 
+     * @return User 
+     */
+    public function user()
+    {
         return $this->user;
     }
     
-    public function config() {
+    /**
+     * Retourne la configuration
+     * 
+     * @return Config
+     */
+    public function config()
+    {
         return $this->config;
     }
-
-    public function name() {
+    
+    /**
+     * Fonction permettant de connaitre le nom de l'application
+     * 
+     * @return string
+     */
+    public function name()
+    {
         return $this->name;
-    }
+    } 
+    
 }

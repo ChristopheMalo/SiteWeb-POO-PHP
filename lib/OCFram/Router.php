@@ -4,7 +4,8 @@ namespace OCFram;
 
 /**
  * Classe permettant de savoir quelle page doit être exécutée
- * Donne à l'application le contrôleur associé 
+ * Donne à l'application le contrôleur associé
+ *  
  * TP Créer un site web - POO en PHP
  * 
  * @author      Christophe Malo
@@ -12,32 +13,55 @@ namespace OCFram;
  * @version     1.0.0
  * @copyright   OpenClassrooms - Victor Thuillier
  */
-class Router {
-
+class Router
+{
+    
     protected $routes = [];
 
     const NO_ROUTE = 1;
-
-    public function addRoute(Route $route) {
-        if (!in_array($route, $this->routes)) {
+    
+    /**
+     * Méthode permettant d'ajouter une route
+     * à la liste de routes de la classe
+     * 
+     * @param \OCFram\Route $route
+     * @return void
+     */
+    public function addRoute(Route $route)
+    {
+        if (!in_array($route, $this->routes))
+        {
             $this->routes[] = $route;
         }
     }
-
-    public function getRoute($url) {
-        foreach ($this->routes as $route) {
+    
+    /**
+     * Méthode permettant de renvoyer la route correspondant à l'URL
+     * 
+     * @param string $url
+     * @return Route
+     * @throws \RuntimeException
+     */
+    public function getRoute($url)
+    {
+        foreach ($this->routes as $route)
+        {
             // Si la route correspond à l'URL
-            if (($varsValues = $route->match($url)) !== false) {
+            if (($varsValues = $route->match($url)) !== false)
+            {
                 // Si elle a des variables
-                if ($route->hasVars()) {
+                if ($route->hasVars())
+                {
                     $varsNames = $route->varsNames();
                     $listVars = [];
 
                     // On crée un nouveau tableau clé/valeur
                     // (clé = nom de la variable, valeur = sa valeur)
-                    foreach ($varsValues as $key => $match) {
+                    foreach ($varsValues as $key => $match)
+                    {
                         // La première valeur contient entièrement la chaine capturée (voir la doc sur preg_match)
-                        if ($key !== 0) {
+                        if ($key !== 0)
+                        {
                             $listVars[$varsNames[$key - 1]] = $match;
                         }
                     }
@@ -52,5 +76,5 @@ class Router {
 
         throw new \RuntimeException('Aucune route ne correspond à l\'URL', self::NO_ROUTE);
     }
-
+    
 }

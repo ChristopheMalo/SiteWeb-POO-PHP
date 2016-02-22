@@ -2,6 +2,7 @@
 
 /* 
  * Vue pour l'action d'insertion d'un commentaire insertComment du module News
+ * 
  * TP Créer un site web - POO en PHP
  *
  * @author      Christophe Malo
