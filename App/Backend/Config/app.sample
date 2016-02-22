@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 Fichier de config du module de connexion
-Supprimer le .sample
+Supprimer le .sample et ajouter l'extension .xml -> app.xml à la place de app.sample
 Remplacer les 2 values
 -->
 <definitions>
