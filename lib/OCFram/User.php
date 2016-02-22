@@ -6,22 +6,28 @@ session_start();
 
 /**
  * La class user gère la session de l'internaute qui se connecte
+ * Elle permet d'enregistrer temporairement l'utilisateur dans la mémoire du serveur
+ * afin de stocker les informations concernant cet utilisateur
+ * 
+ * Il y a création d'une session - Tableau $_SESSION
  * 
  * @author      Christophe Malo
  * @date        17/02/2016
  * @version     1.0.0
  * @copyright   OpenClassrooms - Victor Thuillier
  */
-class User {
+class User
+{
     
     /*************** accesseurs - getters ***************/
     /**
-     * Obtenir la valeur d'un attribut
+     * Obtenir la valeur d'un attribut (qui est assigné à un utilisateur
      * 
      * @param  mixed $attr
      * @return mixed $attr
      */
-    public function getAttribute($attr) {
+    public function getAttribute($attr)
+    {
         return isset($_SESSION[$attr]) ? $_SESSION[$attr] : null;
     }
     
@@ -30,7 +36,8 @@ class User {
      * 
      * @return string $flash
      */
-    public function getFlash() {
+    public function getFlash()
+    {
         $flash = $_SESSION['flash'];
         unset($_SESSION['flash']);
 
@@ -42,7 +49,8 @@ class User {
      * 
      * @return bool
      */
-    public function hasFlash() {
+    public function hasFlash()
+    {
         return isset($_SESSION['flash']);
     }
     
@@ -51,7 +59,8 @@ class User {
      * 
      * @return bool
      */
-    public function isAuthenticated() {
+    public function isAuthenticated()
+    {
         return isset($_SESSION['auth']) && $_SESSION['auth'] === true;
     }
     
@@ -59,12 +68,13 @@ class User {
 
     /*************** mutateurs - setters ***************/
     /**
-     * Obtenir la valeur d'un attribut
+     * Assigner un attribut à un utilisateur
      * 
-     * @param  mixed $attr, mixed value
+     * @param  mixed $attr, mixed $value
      * @return void
      */
-    public function setAttribute($attr, $value) {
+    public function setAttribute($attr, $value)
+    {
         $_SESSION[$attr] = $value;
     }
     
@@ -75,8 +85,10 @@ class User {
      * @param bool=true $authenticated 
      * @return void
      */
-    public function setAuthenticated($authenticated = true) {
-        if (!is_bool($authenticated)) {
+    public function setAuthenticated($authenticated = true)
+    {
+        if (!is_bool($authenticated))
+        {
             throw new \InvalidArgumentException('La valeur spécifiée à la méthode User::setAuthenticated() doit être un boolean');
         }
 
@@ -84,13 +96,14 @@ class User {
     }
 
     /**
-     * Assigner un message informatif
+     * Assigner un message informatif à l'utilisateur
      * Le message est affiché sur la page
      * 
      * @param  string $value
      * @return void
      */
-    public function setFlash($value) {
+    public function setFlash($value)
+    {
         $_SESSION['flash'] = $value;
     }
 

@@ -2,6 +2,7 @@
 
 /* 
  * Vue pour l'action show (executeShow du module News)
+ * 
  * TP Créer un site web - POO en PHP
  *
  * @author      Christophe Malo

@@ -7,12 +7,16 @@ namespace OCFram;
  * Chaque application possède un fichier 
  * de configuration déclarant ces propres paramètres
  * 
+ * Config est un composant de l'application, il hérite de ApplicationComponent
+ * 
  * @author      Christophe Malo
  * @date        17/02/2016
  * @version     1.0.0
  * @copyright   OpenClassrooms - Victor Thuillier
  */
-class Config extends ApplicationComponent {
+class Config extends ApplicationComponent
+{
+    
     protected $vars = [];
     
     /**
@@ -21,8 +25,10 @@ class Config extends ApplicationComponent {
      * @param  string $var
      * @return string $var
      */
-    public function get($var) {
-        if (!$this->vars) {
+    public function get($var)
+    {
+        if (!$this->vars)
+        {
             $xml = new \DOMDocument;
             $xml->load(__DIR__ . '/../../App/' . $this->app->name() . '/Config/app.xml');
 
@@ -33,10 +39,12 @@ class Config extends ApplicationComponent {
             }
         }
 
-        if (isset($this->vars[$var])) {
+        if (isset($this->vars[$var]))
+        {
             return $this->vars[$var];
         }
 
         return null;
     }
+    
 }

@@ -7,7 +7,8 @@ use \OCFram\HTTPRequest;
 use \Entity\Comment;
 
 /**
- * Controleur du module News
+ * Le Contrôleur du module News
+ * 
  * TP Créer un site web - POO en PHP
  *
  * @author      Christophe Malo
@@ -15,13 +16,20 @@ use \Entity\Comment;
  * @version     1.0.0
  * @copyright   OpenClassrooms - Victor Thuillier
  */
-class NewsController extends BackController {
+class NewsController extends BackController
+{
+
     /**
      * Méthode pour l'action index
+     * Récupère les 5 dernières news
+     * (5 est stocké dnas le fichier XML de config de l'application)
+     * (Cet index news n'affiche que 200 caractères par news)
      * 
      * @param HTTPRequest $request
+     * @return void
      */
-    public function executeIndex(HTTPRequest $request) {
+    public function executeIndex(HTTPRequest $request)
+    {
         $nombreNews = $this->app->config()->get('nombre_news');
         $nombreCaracteres = $this->app->config()->get('nombre_caracteres');
 
@@ -33,8 +41,10 @@ class NewsController extends BackController {
 
         $listeNews = $manager->getList(0, $nombreNews);
 
-        foreach ($listeNews as $news) {
-            if (strlen($news->contenu()) > $nombreCaracteres) {
+        foreach ($listeNews as $news)
+        {
+            if (strlen($news->contenu()) > $nombreCaracteres)
+            {
                 $debut = substr($news->contenu(), 0, $nombreCaracteres);
                 $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
 
@@ -48,20 +58,25 @@ class NewsController extends BackController {
     
     /**
      * Méthode pour l'action show
-     * Affiche une news
+     * Affiche une news et ses commentaires
      * Si la news n'existe pas, redirection vers une erreur 404
      * 
      * @param HTTPRequest $request
+     * @return void
      */
-    public function executeShow(HTTPRequest $request) {
+    public function executeShow(HTTPRequest $request)
+    {
         $news = $this->managers->getManagerOf('News')->getUnique($request->getData('id'));
         
-        if (empty($news)) {
+        if (empty($news))
+        {
             $this->app->httResponse()->redirect404();
         }
         
         $this->page->addVar('title', $news->titre());
         $this->page->addVar('news', $news);
+        
+        // Passe les commentaires à la vue
         $this->page->addVar('comments', $this->managers->getManagerOf('Comments')->getListOf($news->id()));
     }
     
@@ -72,24 +87,30 @@ class NewsController extends BackController {
      * Si toutes les données sont valides => le commentaire est inséré en base
      * 
      * @param HTTPRequest $request
+     * @return void
      */
-    public function executeInsertComment(HTTPRequest $request) {
+    public function executeInsertComment(HTTPRequest $request)
+    {
         $this->page->addVar('title', 'Ajout d\'un commentaire');
 
-        if ($request->postExists('pseudo')) {
+        if ($request->postExists('pseudo'))
+        {
             $comment = new Comment([
                 'news' => $request->getData('news'),
                 'auteur' => $request->postData('pseudo'),
                 'contenu' => $request->postData('contenu')
             ]);
 
-            if ($comment->isValid()) {
+            if ($comment->isValid())
+            {
                 $this->managers->getManagerOf('Comments')->save($comment);
 
                 $this->app->user()->setFlash('Le commentaire a bien été ajouté, merci !');
 
                 $this->app->httpResponse()->redirect('news-' . $request->getData('news') . '.html');
-            } else {
+            }
+            else
+            {
                 $this->page->addVar('erreurs', $comment->erreurs());
             }
 
