@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Fichier de config du module de connexion
+Supprimer le .sample
+Remplacer les 2 values
+-->
+<definitions>
+    <define var="login" value="le_login_admin"></define>
+    <define var="pass" value="le_mot_de_pass_admin"></define>
+</definitions>
