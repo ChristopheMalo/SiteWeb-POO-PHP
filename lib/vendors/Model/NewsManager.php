@@ -48,7 +48,7 @@ abstract class NewsManager extends Manager
     /**
      * Méthode permettant d'ajouter une news
      * 
-     * @param $news News (La news à ajouter)
+     * @param $news News La news à ajouter
      * @return void
      */
     abstract protected function add(News $news);
@@ -77,4 +77,11 @@ abstract class NewsManager extends Manager
         throw new \RuntimeException('La news doit être validée pour être enregistrée');
       }
     }
+    
+    /**
+     * Méthode permettant de modifier une news
+     * 
+     * @param News $news La news à modifier
+     */
+    abstract protected function modify(News $news);
 }
