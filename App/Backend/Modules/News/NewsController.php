@@ -4,6 +4,7 @@ namespace App\Backend\Modules\News;
 
 use \OCFram\BackController;
 use \OCFram\HTTPRequest;
+use \Entity\News;
 
 /**
  * Le Contrôleur du module Backend de gestion des News
@@ -35,6 +36,24 @@ class NewsController extends BackController
         $this->page->addVar('listeNews', $manager->getList());  // Affiche la liste
         $this->page->addVar('nombreNews', $manager->count());   // Compte le nombre de news
     }
+    
+    /**
+     * Méthode permettant d'insérer une news
+     * La méthode appelle processForm()
+     * 
+     * @param HTTPRequest $request
+     * @return void
+     */
+    public function executeInsert(HTTPRequest $request)
+    {
+      if ($request->postExists('auteur'))
+      {
+        $this->processForm($request);
+      }
+
+      $this->page->addVar('title', 'Ajout d\'une news');
+    }
+
     
     /**
      * Méthode permettant de traiter le formulaire
