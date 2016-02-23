@@ -89,5 +89,27 @@ class NewsController extends BackController
 
       $this->page->addVar('news', $news);
     }
+    
+    /**
+     * Méthode pour l'action update
+     * Cette méthode est quasiment identique à executeInsert()
+     * Une différence : il faut passet la news à la vue si le formulaure n'est pas envoyé
+     * 
+     * @param HTTPRequest $request
+     * @return void
+     */
+    public function executeUpdate(HTTPRequest $request)
+    {
+      if ($request->postExists('auteur'))
+      {
+        $this->processForm($request);
+      }
+      else
+      {
+        $this->page->addVar('news', $this->managers->getManagerOf('News')->getUnique($request->getData('id')));
+      }
 
+      $this->page->addVar('title', 'Modification d\'une news');
+    }
+    
 }
