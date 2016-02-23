@@ -2,4 +2,5 @@
 <routes>
     <route url="/admin/" module="News" action="index"></route>
     <route url="/admin/news-insert\.html" module="News" action="insert"></route>
+    <route url="/admin/news-update-([0-9]+)\.html" module="News" action="update" vars="id"></route>
 </routes>
