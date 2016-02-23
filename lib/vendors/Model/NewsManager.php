@@ -37,4 +37,11 @@ abstract class NewsManager extends Manager
      */
     abstract public function getUnique($id);
     
+    /**
+     * Méthode permettant de retrouner le nombre total de news
+     * 
+     * @return void
+     */
+    abstract public function count();
+    
 }
