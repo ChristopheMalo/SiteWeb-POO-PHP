@@ -36,4 +36,39 @@ class NewsController extends BackController
         $this->page->addVar('nombreNews', $manager->count());   // Compte le nombre de news
     }
     
+    /**
+     * Méthode permettant de traiter le formulaire
+     * et d'enregistrer la news en DB
+     * 
+     * @param HTTPRequest $request
+     * @return void
+     */
+    public function processForm(HTTPRequest $request)
+    {
+      $news = new News([
+        'auteur'  => $request->postData('auteur'),
+        'titre'   => $request->postData('titre'),
+        'contenu' => $request->postData('contenu')
+      ]);
+
+      // Transmission de l'identifiant de la news en cas de modification
+      if ($request->postExists('id'))
+      {
+        $news->setId($request->postData('id'));
+      }
+
+      if ($news->isValid())
+      {
+        $this->managers->getManagerOf('News')->save($news);
+
+        $this->app->user()->setFlash($news->isNew() ? 'La news a bien été ajoutée !' : 'La news a bien été modifiée !');
+      }
+      else
+      {
+        $this->page->addVar('erreurs', $news->erreurs());
+      }
+
+      $this->page->addVar('news', $news);
+    }
+
 }
