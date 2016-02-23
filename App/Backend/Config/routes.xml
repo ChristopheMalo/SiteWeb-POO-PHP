@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <routes>
     <route url="/admin/" module="News" action="index"></route>
+    <route url="/admin/news-insert\.html" module="News" action="insert"></route>
 </routes>
