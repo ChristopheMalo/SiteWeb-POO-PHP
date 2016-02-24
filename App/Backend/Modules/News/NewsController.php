@@ -125,9 +125,20 @@ class NewsController extends BackController
      */
     public function executeDelete(HTTPRequest $request)
     {
-        $this->managers->getManagerOf('News')->delete($request->getData('id'));
-        $this->app->user()->setFlash('La news a bien été supprimée');
+        // Suppression de la news avec les commentaires
+        $newsId = $request->getData('id');
+        
+        $this->managers->getManagerOf('News')->delete($newsId);
+        $this->managers->getManagerOf('Comments')->deleteFromNews($newsId);
+        
+        $this->app->user()->setFlash('La news a bien été supprimée !');
+        
         $this->app->httpResponse()->redirect('.');
+        
+        // Supprime une news sans suppression des commentaires
+        //$this->managers->getManagerOf('News')->delete($request->getData('id'));
+        //$this->app->user()->setFlash('La news a bien été supprimée');
+        //$this->app->httpResponse()->redirect('.');
     }
     
     /**
