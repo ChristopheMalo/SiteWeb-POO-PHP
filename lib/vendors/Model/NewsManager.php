@@ -82,6 +82,15 @@ abstract class NewsManager extends Manager
      * Méthode permettant de modifier une news
      * 
      * @param News $news La news à modifier
+     * @return void
      */
     abstract protected function modify(News $news);
+    
+    /**
+     * Méthode permettant de supprimer une news
+     * 
+     * @param int $id L'identifiant de la news à supprimer
+     * @return void
+     */
+    abstract public function delete($id);
 }
