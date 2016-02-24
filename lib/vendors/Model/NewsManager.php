@@ -3,6 +3,7 @@
 namespace Model;
 
 use \OCFram\Manager;
+use \Entity\News;
 /**
  * Classe premettant de gérer les news
  * Cette classe doit intéragir avec la DB
@@ -37,4 +38,59 @@ abstract class NewsManager extends Manager
      */
     abstract public function getUnique($id);
     
+    /**
+     * Méthode permettant de retrouner le nombre total de news
+     * 
+     * @return void
+     */
+    abstract public function count();
+    
+    /**
+     * Méthode permettant d'ajouter une news
+     * 
+     * @param $news News La news à ajouter
+     * @return void
+     */
+    abstract protected function add(News $news);
+    
+    /**
+     * Méthode permettant d'enregistrer une news
+     * Cette méthode s'implémente directement dans NewsManager
+     * car elle ne dépend pas du DAO
+     * 
+     * save() ajoute la news si nouvelle ou la met à jour si déjà enregistrée
+     * 
+     * @param News $news
+     * @see self::add()
+     * @see self::modify()
+     * @return void
+     * @throws \RuntimeException
+     */
+    public function save(News $news)
+    {
+      if ($news->isValid())
+      {
+        $news->isNew() ? $this->add($news) : $this->modify($news);
+      }
+      else
+      {
+        throw new \RuntimeException('La news doit être validée pour être enregistrée');
+      }
+    }
+    
+    /**
+     * Méthode permettant de modifier une news
+     * 
+     * @param News $news La news à modifier
+     * @return void
+     */
+    abstract protected function modify(News $news);
+    
+    /**
+     * Méthode permettant de supprimer une news
+     * 
+     * @param int $id L'identifiant de la news à supprimer
+     * @return void
+     */
+    abstract public function delete($id);
 }

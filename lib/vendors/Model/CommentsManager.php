@@ -55,5 +55,37 @@ abstract class CommentsManager extends Manager
      * @return  array La liste des commentaires
      */
     abstract public function getListOf($news);
-
+    
+    /**
+     * Méthode permettant de modifier un commentaire depuis le backend
+     * 
+     * @param Comment $comment Le commentaire à modifier
+     * @return void
+     */
+    abstract protected function modify(Comment $comment);
+    
+    /**
+     * Méthode permettant de récupérer un commentaire spécifique
+     * 
+     * @param int $id L'identifiant du commentaire
+     * @return void
+     */
+    abstract public function get($id);
+    
+    /**
+     * Méthode permettant de supprimer un commentaire si user authentifié
+     * 
+     * @param int $id Identifiant du commentaire à supprimer
+     * @return void
+     */
+    abstract public function delete($id);
+    
+    /**
+     * Méthode permettant de supprimer tous les commentaires liés à une news
+     * 
+     * @param int $news Identifiant de la news dont les commentaires sont à supprimer
+     * @return void
+     */
+    abstract public function deleteFromNews($news);
+    
 }
