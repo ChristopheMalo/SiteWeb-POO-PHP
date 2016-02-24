@@ -118,7 +118,7 @@ class NewsController extends BackController
      * Le contrôleur se charge d'invoquer la méthode du manager qui supprimera la news
      * L'utilisateur est ensuite redirigé vers l'index admin
      * avec affichage d'un message au rechargement de la page
-     * Cette action ne posèède aucune vue
+     * Cette action ne possède aucune vue
      * 
      * @param HTTPRequest $request
      * @return void
@@ -172,6 +172,24 @@ class NewsController extends BackController
         {
             $this->page->addVar('comment', $this->managers->getManagerOf('Comments')->get($request->getData('id')));
         }
+    }
+    
+    /**
+     * Méthode pour l'action deleteComment
+     * Le contrôleur se charge d'invoquer
+     * la méthode du manager qui supprimera le commentaire (delete)
+     * L'utilisateur est ensuite redirigé vers l'index admin
+     * avec affichage d'un message au rechargement de la page
+     * Cette action ne possède aucune vue
+     * 
+     * @param HTTPRequest $request
+     * @return void
+     */
+    public function executeDeleteComment(HTTPRequest $request)
+    {
+        $this->managers->getManagerOf('Comments')->delete($request->getData('id'));
+        $this->app->user()->setFlash('Le commentaire a bien été supprimé !');
+        $this->app->httpResponse()->redirect('.');
     }
 
 }
