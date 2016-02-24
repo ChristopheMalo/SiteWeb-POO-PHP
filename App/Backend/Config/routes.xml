@@ -5,4 +5,5 @@
     <route url="/admin/news-update-([0-9]+)\.html" module="News" action="update" vars="id"></route>
     <route url="/admin/news-delete-([0-9]+)\.html" module="News" action="delete" vars="id"></route>
     <route url="/admin/comment-update-([0-9]+)\.html" module="News" action="updateComment" vars="id"></route>
+    <route url="/admin/comment-delete-([0-9]+)\.html" module="News" action="deleteComment" vars="id"></route>
 </routes>
