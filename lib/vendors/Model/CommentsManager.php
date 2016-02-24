@@ -72,4 +72,12 @@ abstract class CommentsManager extends Manager
      */
     abstract public function get($id);
     
+    /**
+     * Méthode permettant de supprimer un commentaire si user authentifié
+     * 
+     * @param int $id Identifiant du commentaire à supprimer
+     * @return void
+     */
+    abstract public function delete($id);
+    
 }
