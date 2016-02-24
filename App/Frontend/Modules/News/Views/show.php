@@ -3,10 +3,13 @@
 /* 
  * Vue pour l'action show (executeShow du module News)
  * 
+ * Update du 24/02/2à16 : ajout du lien de modification d'un commentaire si user connected
+ * 
  * TP Créer un site web - POO en PHP
  *
  * @author      Christophe Malo
  * @date        19/02/2016
+ * @update      24/02/2016
  * @version     1.0.0
  * @copyright   OpenClassrooms - Victor Thuillier
  */
@@ -36,6 +39,13 @@ foreach ($comments as $comment) { ?>
     <fieldset>
         <legend>
             Posté par <strong><?= htmlspecialchars($comment['auteur']) ?></strong> le <?= $comment['date']->format('d/m/Y à H\hi') ?>
+        
+                <?php
+                // Si user admin connected alors possibilité de modifier le commentaire
+                if ($user->isAuthenticated()) { ?> -
+                    <a href="admin/comment-update-<?= $comment['id'] ?>.html">Modifier</a> |
+                <?php } ?>
+
         </legend>
         <p><?= nl2br(htmlspecialchars($comment['contenu'])) ?></p>
     </fieldset>
