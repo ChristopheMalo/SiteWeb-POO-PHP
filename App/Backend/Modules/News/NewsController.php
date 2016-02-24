@@ -5,6 +5,7 @@ namespace App\Backend\Modules\News;
 use \OCFram\BackController;
 use \OCFram\HTTPRequest;
 use \Entity\News;
+use \Entity\Comment;
 
 /**
  * Le Contrôleur du module Backend de gestion des News
@@ -134,7 +135,8 @@ class NewsController extends BackController
      * La méthode contrôle les valeurs du formulaire
      * et modifie le commentaire en DB si l'ensemble des données sont valides
      * L'utilisateur est redirigé vers la news qu'il lisait
-     * Un champ caché doit être ajouté dans le formulaire pour transmettre le paramètre identifiant de la news
+     * Un champ caché doit être ajouté dans le formulaire
+     * pour transmettre le paramètre identifiant de la news
      * 
      * @param HTTPRequest $request
      * @return void
