@@ -3,7 +3,9 @@
 /* 
  * Vue pour l'action show (executeShow du module News)
  * 
- * Update du 24/02/2à16 : ajout du lien de modification d'un commentaire si user connected
+ * Update du 24/02/2à16 :
+ * ajout des liens de modification et de suppression
+ * d'un commentaire si user connected
  * 
  * TP Créer un site web - POO en PHP
  *
@@ -41,9 +43,10 @@ foreach ($comments as $comment) { ?>
             Posté par <strong><?= htmlspecialchars($comment['auteur']) ?></strong> le <?= $comment['date']->format('d/m/Y à H\hi') ?>
         
                 <?php
-                // Si user admin connected alors possibilité de modifier le commentaire
+                // Si user admin connected alors possibilité de modifier ou supprimer le commentaire
                 if ($user->isAuthenticated()) { ?> -
-                    <a href="admin/comment-update-<?= $comment['id'] ?>.html">Modifier</a> |
+                    <a href="admin/comment-update-<?= $comment['id'] ?>.html">Modifier</a> | 
+                    <a href="admin/comment-delete-<?= $comment['id'] ?>.html">Supprimer</a>
                 <?php } ?>
 
         </legend>
