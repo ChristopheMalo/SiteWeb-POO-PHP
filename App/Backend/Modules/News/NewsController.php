@@ -129,4 +129,47 @@ class NewsController extends BackController
         $this->app->httpResponse()->redirect('.');
     }
     
+    /**
+     * Méthode pour l'action updateComment
+     * La méthode contrôle les valeurs du formulaire
+     * et modifie le commentaire en DB si l'ensemble des données sont valides
+     * L'utilisateur est redirigé vers la news qu'il lisait
+     * Un champ caché doit être ajouté dans le formulaire pour transmettre le paramètre identifiant de la news
+     * 
+     * @param HTTPRequest $request
+     * @return void
+     */
+    public function executeUpdateComment(HTTPRequest $request)
+    {
+        $this->page->addVar('title', 'Modification d\'un commentaire');
+
+        if ($request->postExists('pseudo'))
+        {
+            $comment = new Comment([
+                'id' => $request->getData('id'),
+                'auteur' => $request->postData('pseudo'),
+                'contenu' => $request->postData('contenu')
+            ]);
+
+            if ($comment->isValid())
+            {
+                $this->managers->getManagerOf('Comments')->save($comment);
+
+                $this->app->user()->setFlash('Le commentaire a bien été modifié !');
+
+                $this->app->httpResponse()->redirect('/news-' . $request->postData('news') . '.html');
+            }
+            else
+            {
+                $this->page->addVar('erreurs', $comment->erreurs());
+            }
+
+            $this->page->addVar('comment', $comment);
+        }
+        else
+        {
+            $this->page->addVar('comment', $this->managers->getManagerOf('Comments')->get($request->getData('id')));
+        }
+    }
+
 }
