@@ -112,4 +112,21 @@ class NewsController extends BackController
       $this->page->addVar('title', 'Modification d\'une news');
     }
     
+    /**
+     * Méthode pour l'action delete
+     * Le contrôleur se charge d'invoquer la méthode du manager qui supprimera la news
+     * L'utilisateur est ensuite redirigé vers l'index admin
+     * avec affichage d'un message au rechargement de la page
+     * Cette action ne posèède aucune vue
+     * 
+     * @param HTTPRequest $request
+     * @return void
+     */
+    public function executeDelete(HTTPRequest $request)
+    {
+        $this->managers->getManagerOf('News')->delete($request->getData('id'));
+        $this->app->user()->setFlash('La news a bien été supprimée');
+        $this->app->httpResponse()->redirect('.');
+    }
+    
 }
