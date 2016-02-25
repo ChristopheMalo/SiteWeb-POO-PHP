@@ -4,6 +4,8 @@ namespace OCFram;
 
 /**
  * L'objet Form représente un formulaire et sa liste de champs associés
+ * Le formulaire génére les champs qui lu isont attachés
+ * Le controleur récupère le corps du formulaire et le passe à la vue
  *
   * TP Créer un site web - POO en PHP
  * 
