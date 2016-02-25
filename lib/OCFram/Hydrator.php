@@ -3,8 +3,8 @@
 namespace OCFram;
 
 /**
- * Le trait Hydrator implémente une méthode Hydrate
- * Entity et Field utilisent Hydrator
+ * <p>Le trait Hydrator implémente une méthode Hydrate<br>
+ * Entity et Field utilisent Hydrator</p>
  *
  * TP Créer un site web - POO en PHP
  * 
