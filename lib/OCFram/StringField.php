@@ -3,7 +3,7 @@
 namespace OCFram;
 
 /**
- * L'objet StringField (classe fille de field) représente un champ spécifique de Form
+ * L'objet StringField (classe fille de field) représente un champ spécifique de Form - Le champ texte classique
  *
   * TP Créer un site web - POO en PHP
  * 
