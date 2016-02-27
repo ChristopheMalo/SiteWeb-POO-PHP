@@ -20,6 +20,7 @@ abstract class Validator {
     
     /**
      * Méthode de construction qui demande le message d'erreur
+     * 
      * @param string $errorMessage
      */
     public function __construct($errorMessage)
@@ -30,6 +31,9 @@ abstract class Validator {
     /**
      * Méthode permettant de valider le champ<br>
      * Si le champ n'est pas valide, un message est retourner
+     * 
+     * @param string $value
+     * @return bool
      */
     abstract public function isValid($value);
     
@@ -46,7 +50,7 @@ abstract class Validator {
     /**
      * Methode mutateur permettant d'assigner un message d'erreur
      * 
-     * @param string $errorMessage LE message d'erreur
+     * @param string $errorMessage Le message d'erreur
      * @return void
      */
     public function setErrorMessage($errorMessage)
