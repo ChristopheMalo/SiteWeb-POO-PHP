@@ -55,7 +55,14 @@ abstract class Field {
      */
     public function isValid()
     {
-        
+        foreach ($this->validators as $validator)
+        {
+            if (!$validator->isValid($this->value))
+            {
+                $this->errorMessage = $validator->errorMessage();
+                return false;
+            }
+        }
     }
     
     /** Méthodes Accesseurs (Getters) - Pour récupérer / lire la valeur d'un attribut **/
