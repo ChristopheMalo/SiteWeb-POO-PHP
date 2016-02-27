@@ -30,6 +30,9 @@ $modelLoader->register();
 $entityLoader = new SplClassLoader('Entity', __DIR__.'/../lib/vendors');
 $entityLoader->register();
 
+$formBuilderLoader = new SplClassLoader('FormBuilder', __DIR__.'/../lib/vendors');
+$formBuilderLoader->register();
+
 // Déduction du nom de la classe et instanciation de cette classe
 $appClass = 'App\\'.$_GET['app'].'\\'.$_GET['app'].'Application';
 
