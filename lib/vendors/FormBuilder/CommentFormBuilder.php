@@ -1,6 +1,6 @@
 <?php
 
-namespace ForBuilder;
+namespace FormBuilder;
 
 use \OCFram\FormBuilder;
 use \OCFram\StringField;
