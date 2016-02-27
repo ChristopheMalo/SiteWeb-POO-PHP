@@ -20,10 +20,11 @@ abstract class Field {
     /**
      * Les attributs
      */
-    protected   $errorMessage,  // pour stocker message d'erreur associé au champ
-                $label,         // pour stocker le label du champ
-                $name,          // pour stocker le nom du champ
-                $value;         // pour stocker la valeur du champ
+    protected   $errorMessage,    // pour stocker message d'erreur associé au champ
+                $label,           // pour stocker le label du champ
+                $name,            // pour stocker le nom du champ
+                $validators = [], // pour stocker la liste des validateurs du champ
+                $value;           // pour stocker la valeur du champ
     
     /**
      * Méthode de construction permettant de demander la liste des attributs
@@ -80,6 +81,16 @@ abstract class Field {
     }
     
     /**
+     * Méthode permettant de retourner la liste des validateurs utilisés pour un champ
+     * 
+     * @return array La liste des validateurs du champ
+     */
+    public function validators()
+    {
+        return $this->validators;
+    }
+    
+    /**
      * Méthode permettant de retourner la valeur
      * 
      * @return string La valeur du champ
@@ -113,6 +124,17 @@ abstract class Field {
         if (is_string($name))
         {
             $this->name = $name;
+        }
+    }
+    
+    public function setValidators(array $validators)
+    {
+        foreach ($validators as $validator)
+        {
+            if ($validators instanceof Validator && !in_array($validator, $this->validators))
+            {
+                $this->validators[] = $validator;
+            }
         }
     }
     
