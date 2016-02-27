@@ -3,8 +3,8 @@
 namespace OCFram;
 
 /**
- * Classe fille permettant de vérifier que le champ Field possède bien une longiueur > 0<br>
- * Si le champ possède une longueur spécifiée > 0, il est valide
+ * Classe fille permettant de vérifier que le champ Field est > 0 caractère et n'exède pas un certain nombre de caractères<br>
+ * Si le champ possède une longueur spécifiée > 0 et < à maxLength, il est valide
  * 
  * TP Créer un site web - POO en PHP
  * 
@@ -29,7 +29,7 @@ class MaxLengthValidator extends Validator {
     }
     
     /**
-     * Méthode permettant d'assigner une valeur à la propriété HTML maxlength d'un champ
+     * Méthode permettant d'assigner une valeur maxlength à un champ
      * 
      * @param int $maxLength
      * @return void
