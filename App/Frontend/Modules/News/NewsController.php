@@ -6,6 +6,7 @@ use \OCFram\BackController;
 use \OCFram\HTTPRequest;
 use \Entity\Comment;
 use \FormBuilder\CommentFormBuilder;
+use \OCFram\FormHandler;
 
 /**
  * Le Contrôleur du module News
@@ -112,10 +113,11 @@ class NewsController extends BackController
     
     $form = $formBuilder->form();
     
+    $formHandler = new FormHandler($form, $this->managers->getManagerOf('Comments'), $request);
+    
     // Enregistrement du commentaire en DB
-    if ($request->method() == 'POST' && $form->isValid())
+    if ($formHandler->process())
     {
-        $this->managers->getManagerOf('Comments')->save($comment);
         $this->app->user()->setFlash('Le commentaire a bien été ajouté, merci !');
         $this->app->httpResponse()->redirect('news-' . $request->getData('news') . '.html');
     }
