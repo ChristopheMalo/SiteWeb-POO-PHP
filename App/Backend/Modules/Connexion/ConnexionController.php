@@ -2,8 +2,8 @@
 
 namespace App\BAckend\Modules\Connexion;
 
-use \OCFram\BackController;
-use \OCFram\HTTPRequest;
+use OCFram\BackController;
+use OCFram\HTTPRequest;
 
 /**
  * Le Contrôleur du module de connexion du Backend

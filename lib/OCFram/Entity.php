@@ -17,6 +17,8 @@ namespace OCFram;
 abstract class Entity implements \ArrayAccess
 {
     
+    use Hydrator;
+    
     protected $erreurs = [],
               $id;
     
@@ -78,21 +80,24 @@ abstract class Entity implements \ArrayAccess
     /**
      * Methode d'hydratation si un tableau de valeur est fourni
      * 
+     * Mise en place du trait Hydrator
+     *  => La méthode hydrate est désactivée
+     * 
      * @param array $donnees
      * @return void
      */
-    public function hydrate(array $donnees)
-    {
-        foreach ($donnees as $attribut => $valeur)
-        {
-            $methode = 'set' . ucfirst($attribut);
-
-            if (is_callable([$this, $methode]))
-            {
-                $this->$methode($valeur);
-            }
-        }
-    }
+//    public function hydrate(array $donnees)
+//    {
+//        foreach ($donnees as $attribut => $valeur)
+//        {
+//            $methode = 'set' . ucfirst($attribut);
+//
+//            if (is_callable([$this, $methode]))
+//            {
+//                $this->$methode($valeur);
+//            }
+//        }
+//    }
     
     /**
      * Implémentation de 4 fonctions d'ArrayAccess

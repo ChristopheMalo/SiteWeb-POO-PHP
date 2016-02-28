@@ -2,7 +2,7 @@
 
 namespace Entity;
 
-use \OCFram\Entity;
+use OCFram\Entity;
 
 /**
  * Classe représentant l'enregistrement d'un commentaire - Entité

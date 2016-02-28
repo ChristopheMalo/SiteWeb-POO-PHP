@@ -2,8 +2,8 @@
 
 namespace Model;
 
-use \OCFram\Manager;
-use \Entity\Comment;
+use OCFram\Manager;
+use Entity\Comment;
 
 /**
  * Classe premettant de gérer les commentaires
