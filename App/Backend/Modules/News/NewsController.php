@@ -6,6 +6,8 @@ use \OCFram\BackController;
 use \OCFram\HTTPRequest;
 use \Entity\News;
 use \Entity\Comment;
+use \FormBuilder\CommentFormBuilder;
+use\FormBuilder\NewsFormBuilder;
 
 /**
  * Le Contrôleur du module Backend de gestion des News
@@ -14,6 +16,8 @@ use \Entity\Comment;
  *
  * @author      Christophe Malo
  * @date        23/02/2016
+ * @update      28/02/2016
+ * @commentaire Update du 28/02/16 : Utiliser FormBuilder
  * @version     1.0.0
  * @copyright   OpenClassrooms - Victor Thuillier
  */
@@ -47,12 +51,8 @@ class NewsController extends BackController
      */
     public function executeInsert(HTTPRequest $request)
     {
-      if ($request->postExists('auteur'))
-      {
         $this->processForm($request);
-      }
-
-      $this->page->addVar('title', 'Ajout d\'une news');
+        $this->page->addVar('title', 'Ajout d\'une news');
     }
 
     
@@ -65,30 +65,45 @@ class NewsController extends BackController
      */
     public function processForm(HTTPRequest $request)
     {
-      $news = new News([
-        'auteur'  => $request->postData('auteur'),
-        'titre'   => $request->postData('titre'),
-        'contenu' => $request->postData('contenu')
-      ]);
+        if ($request->method() == 'POST')
+        {
+            $news = new News([
+                'auteur'  => $request->postData('auteur'),
+                'titre'   => $request->postData('titre'),
+                'contenu' => $request->postData('contenu')
+            ]);
 
-      // Transmission de l'identifiant de la news en cas de modification
-      if ($request->postExists('id'))
-      {
-        $news->setId($request->postData('id'));
-      }
+            if ($request->getExists('id'))
+            {
+                $news->setId($request->getData('id'));
+            }
+        }
+        else
+        {
+            // Transmission de l'identifiant de la news en cas de modification
+            if ($request->getExists('id'))
+            {
+                $news = $this->managers->getManagerOf('News')->getUnique($request->getData('id'));
+            }
+            else
+            {
+                $news = new News;
+            }
+        }
 
-      if ($news->isValid())
-      {
-        $this->managers->getManagerOf('News')->save($news);
+        $formBuilder = new NewsFormBuilder($news);
+        $formBuilder->build();
 
-        $this->app->user()->setFlash($news->isNew() ? 'La news a bien été ajoutée !' : 'La news a bien été modifiée !');
-      }
-      else
-      {
-        $this->page->addVar('erreurs', $news->erreurs());
-      }
+        $form = $formBuilder->form();
 
-      $this->page->addVar('news', $news);
+        if ($request->method() == 'POST' && $form->isValid())
+        {
+            $this->managers->getManagerOf('News')->save($news);
+            $this->app->user()->setFlash($news->isNew() ? 'La news a bien été ajoutée !' : 'La news a bien été modifiée !');
+            $this->app->httpResponse()->redirect('/admin/');
+        }
+
+        $this->page->addVar('form', $form->createView());
     }
     
     /**
@@ -101,16 +116,8 @@ class NewsController extends BackController
      */
     public function executeUpdate(HTTPRequest $request)
     {
-      if ($request->postExists('auteur'))
-      {
         $this->processForm($request);
-      }
-      else
-      {
-        $this->page->addVar('news', $this->managers->getManagerOf('News')->getUnique($request->getData('id')));
-      }
-
-      $this->page->addVar('title', 'Modification d\'une news');
+        $this->page->addVar('title', 'Modification d\'une news');
     }
     
     /**
@@ -156,33 +163,32 @@ class NewsController extends BackController
     {
         $this->page->addVar('title', 'Modification d\'un commentaire');
 
-        if ($request->postExists('pseudo'))
+        if ($request->method() == 'POST')
         {
             $comment = new Comment([
                 'id' => $request->getData('id'),
-                'auteur' => $request->postData('pseudo'),
+                'auteur' => $request->postData('auteur'),
                 'contenu' => $request->postData('contenu')
             ]);
-
-            if ($comment->isValid())
-            {
-                $this->managers->getManagerOf('Comments')->save($comment);
-
-                $this->app->user()->setFlash('Le commentaire a bien été modifié !');
-
-                $this->app->httpResponse()->redirect('/news-' . $request->postData('news') . '.html');
-            }
-            else
-            {
-                $this->page->addVar('erreurs', $comment->erreurs());
-            }
-
-            $this->page->addVar('comment', $comment);
         }
         else
         {
-            $this->page->addVar('comment', $this->managers->getManagerOf('Comments')->get($request->getData('id')));
+            $comment = $this->managers->getManagerOf('Comments')->get($request->getData('id'));
         }
+
+        $formBuilder = new CommentFormBuilder($comment);
+        $formBuilder->build();
+
+        $form = $formBuilder->form();
+
+        if ($request->method() == 'POST' && $form->isValid())
+        {
+            $this->managers->getManagerOf('Comments')->save($comment);
+            $this->app->user()->setFlash('Le commentaire a bien été modifié');
+            $this->app->httpResponse()->redirect('/admin/');
+        }
+
+        $this->page->addVar('form', $form->createView());
     }
     
     /**
