@@ -17,6 +17,12 @@ class MaxLengthValidator extends Validator {
     
     protected $maxLength;
     
+    /**
+     * Méthode de contruction du message
+     * 
+     * @param string $errorMessage
+     * @param int $maxLength
+     */
     public function __construct($errorMessage, $maxLength)
     {
         parent::__construct($errorMessage);
@@ -25,7 +31,7 @@ class MaxLengthValidator extends Validator {
     
     public function isValid($value)
     {
-        return strlen($value) <= $this ->maxLength;
+        return strlen($value) <= $this->maxLength;
     }
     
     /**
@@ -41,7 +47,7 @@ class MaxLengthValidator extends Validator {
         
         if ($maxLength > 0)
         {
-            $this->$maxLength = $maxLength;
+            $this->maxLength = $maxLength;
         }
         else
         {
