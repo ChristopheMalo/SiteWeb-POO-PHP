@@ -80,16 +80,6 @@ abstract class Field {
     }
     
     /**
-     * Méthode permettant de retourner le nom du champ
-     * 
-     * @return string Le nom du champ
-     */
-    public function name()
-    {
-        return $this->name;
-    }
-    
-    /**
      * Méthode permettant de retourner la longueur du champ
      * 
      * @return int La longueur du champ
@@ -97,6 +87,16 @@ abstract class Field {
     public function length()
     {
         return $this->length();
+    }
+    
+    /**
+     * Méthode permettant de retourner le nom du champ
+     * 
+     * @return string Le nom du champ
+     */
+    public function name()
+    {
+        return $this->name;
     }
     
     /**
@@ -164,7 +164,7 @@ abstract class Field {
     {
         foreach ($validators as $validator)
         {
-            if ($validators instanceof Validator && !in_array($validator, $this->validators))
+            if ($validator instanceof Validator && !in_array($validator, $this->validators))
             {
                 $this->validators[] = $validator;
             }
