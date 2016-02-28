@@ -63,12 +63,14 @@ abstract class Field {
                 return false;
             }
         }
+        
+        return true;
     }
     
     /** Méthodes Accesseurs (Getters) - Pour récupérer / lire la valeur d'un attribut **/
     
     /**
-     * Méthode permettant de retourner le label
+     * Méthode permettant de retourner le label accompagnant le champ
      * 
      * @return string Le label du champ
      */
@@ -78,13 +80,23 @@ abstract class Field {
     }
     
     /**
-     * Méthode permettant de retourner le nom
+     * Méthode permettant de retourner le nom du champ
      * 
      * @return string Le nom du champ
      */
     public function name()
     {
         return $this->name;
+    }
+    
+    /**
+     * Méthode permettant de retourner la longueur du champ
+     * 
+     * @return int La longueur du champ
+     */
+    public function length()
+    {
+        return $this->length();
     }
     
     /**
@@ -122,6 +134,16 @@ abstract class Field {
         }
     }
     
+    public function setLength($length)
+    {
+        $length = (int) $length;
+        
+        if ($length > 0)
+        {
+            $this->length = $length;
+        }
+    }
+    
     /**
      * @param string $name
      * @retun void
@@ -134,6 +156,10 @@ abstract class Field {
         }
     }
     
+    /**
+     * @param array $validators
+     * @return void
+     */
     public function setValidators(array $validators)
     {
         foreach ($validators as $validator)
