@@ -1,7 +1,7 @@
 <?php
 namespace App\Backend;
 
-Use \OCFram\Application;
+Use OCFram\Application;
 
 /**
  * Classe représentant l'Application Backend

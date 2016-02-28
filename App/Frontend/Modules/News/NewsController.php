@@ -2,14 +2,14 @@
 
 namespace App\Frontend\Modules\News;
 
-use \OCFram\BackController;
-use \OCFram\HTTPRequest;
-use \Entity\Comment;
-use \FormBuilder\CommentFormBuilder;
-use \OCFram\FormHandler;
+use OCFram\BackController;
+use OCFram\HTTPRequest;
+use Entity\Comment;
+use FormBuilder\CommentFormBuilder;
+use OCFram\FormHandler;
 
 /**
- * Le Contrôleur du module News
+ * Le Contrôleur du module News Frontend
  * 
  * TP Créer un site web - POO en PHP
  *

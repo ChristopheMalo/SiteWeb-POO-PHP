@@ -2,11 +2,11 @@
 
 namespace FormBuilder;
 
-use \OCFram\FormBuilder;
-use \OCFram\StringField;
-use \OCFram\TextField;
-use \OCFram\MaxLengthValidator;
-use \OCFram\NotNullValidator;
+use OCFram\FormBuilder;
+use OCFram\StringField;
+use OCFram\TextField;
+use OCFram\MaxLengthValidator;
+use OCFram\NotNullValidator;
 
 /**
  * L'objet CommentFormbuilder (classe fille de FormBuilder) représente le formulaire de création d'un commentaire

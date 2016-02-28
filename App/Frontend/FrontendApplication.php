@@ -2,7 +2,7 @@
 // Identique au chemin menant vers le fichier
 namespace App\Frontend;
 
-use \OCFram\Application;
+use OCFram\Application;
 
 /**
  * Classe représentant l'Application Frontend

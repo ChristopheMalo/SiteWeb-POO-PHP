@@ -2,8 +2,8 @@
 
 namespace Model;
 
-use \OCFram\Manager;
-use \Entity\News;
+use OCFram\Manager;
+use Entity\News;
 /**
  * Classe premettant de gérer les news
  * Cette classe doit intéragir avec la DB

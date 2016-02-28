@@ -2,7 +2,7 @@
 
 namespace Model;
 
-use \Entity\News;
+use Entity\News;
 
 /**
  * Classe spécialisée pour se connecter à la DB en PDO
