@@ -2,7 +2,7 @@
 
 namespace Model;
 
-use \Entity\Comment;
+use Entity\Comment;
 
 /**
  * Classe spécialisée pour se connecter à la DB en PDO
